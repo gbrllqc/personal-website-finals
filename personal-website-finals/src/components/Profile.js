@@ -22,8 +22,8 @@ function Profile() {
 
   const socialLinks = {
     github: "https://github.com/gbrllqc",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    instagram: "https://instagram.com/yourprofile"
+    linkedin: "https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fgabrielle-c-7b7916326%3Futm_source%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dmember_ios%26fbclid%3DIwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPNDM3NjI2MzE2OTczNzg4AAEeqXsioE0wov4FDTIIuiItnAOc8gIV2VuxFJK88sNIWZQTEfO6kyhU5bHz_fs_aem_30ckz5eil1ImKKUOwW8UTQ&h=AT6crUI4EjTz5gy6eg1ppwPEuJgFqGYhLkS8dibqZ13CGSu-0d6FlbEdvvcDCWJ5t3ygBFp08EmAF-nCfAaZunI9BjD7S1tra3Quda_fPdCWT55QqJ0owi7Sk-ZpP7Q&s=1",
+    instagram: "https://www.instagram.com/gbrll.qrnclb?igsh=d2xhcHk5d3I1Z2lj&utm_source=qr"
   };
 
   // Profile photos with your actual photos
