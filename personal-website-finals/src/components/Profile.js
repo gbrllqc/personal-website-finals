@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
-import { FaGithub, FaLinkedin, FaInstagram, FaCamera } from 'react-icons/fa';
-import { FaTimes } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaCamera, FaTimes } from 'react-icons/fa';
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -27,13 +26,18 @@ function Profile() {
   };
 
   // Profile photos with your actual photos
-const profilePhotos = [
-  { id: 1, url: "/images/me1.jpg", caption: "Just me! 🐻" },
-  { id: 2, url: "/images/me3.jpg", caption: "Another day in the Hundred Acre Wood 🌲" },
-  { id: 3, url: "/images/me2.jpg", caption: "Feeling sweet! 🍯" },
-  { id: 4, url: "/images/me4.jpg", caption: "Me at school 🐯" },
-  { id: 5, url: "/images/menpooh.jpg", caption: "Me and Pooh! 🐻🍯" },
-];
+  const profilePhotos = [
+    { id: 1, url: "/images/me1.jpg", caption: "Just me! 🐻" },
+    { id: 2, url: "/images/me3.jpg", caption: "Another day in the Hundred Acre Wood 🌲" },
+    { id: 3, url: "/images/me2.jpg", caption: "Feeling sweet! 🍯" },
+    { id: 4, url: "/images/me4.jpg", caption: "Me at school 🐯" },
+    { id: 5, url: "/images/menpooh.jpg", caption: "Me and Pooh! 🐻🍯" },
+  ];
+
+  const handleLinkClick = (platform, url) => {
+    console.log(`Opening ${platform}:`, url);
+    // The link will open naturally via the href
+  };
 
   if (!profile) return <div className="loading">Loading...</div>;
 
@@ -61,6 +65,7 @@ const profilePhotos = [
               target="_blank" 
               rel="noopener noreferrer"
               className="social-link github"
+              onClick={() => handleLinkClick('GitHub', socialLinks.github)}
             >
               <FaGithub /> GitHub
             </a>
@@ -69,6 +74,7 @@ const profilePhotos = [
               target="_blank" 
               rel="noopener noreferrer"
               className="social-link linkedin"
+              onClick={() => handleLinkClick('LinkedIn', socialLinks.linkedin)}
             >
               <FaLinkedin /> LinkedIn
             </a>
@@ -77,6 +83,7 @@ const profilePhotos = [
               target="_blank" 
               rel="noopener noreferrer"
               className="social-link instagram"
+              onClick={() => handleLinkClick('Instagram', socialLinks.instagram)}
             >
               <FaInstagram /> Instagram
             </a>
@@ -88,18 +95,26 @@ const profilePhotos = [
       {showPhotoModal && (
         <div className="photo-modal" onClick={() => setShowPhotoModal(false)}>
           <div className="modal-content profile-photos-modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setShowPhotoModal(false)}>
+              <FaTimes />
+            </button>
+            
             <h3>My Photo Gallery 📸</h3>
             <div className="profile-photos-grid">
               {profilePhotos.map(photo => (
                 <div key={photo.id} className="profile-photo-card">
-                  <img src={photo.url} alt={photo.caption} />
+                  <img 
+                    src={photo.url} 
+                    alt={photo.caption}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://via.placeholder.com/400x400?text=Photo+Coming+Soon';
+                    }}
+                  />
                   <p>{photo.caption}</p>
                 </div>
               ))}
             </div>
-            <button className="modal-close" onClick={() => setShowPhotoModal(false)}>
-              Close
-            </button>
           </div>
         </div>
       )}
